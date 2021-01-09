@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import './scss/app.scss'
 import {Header} from './components'
 import {Home, Cart} from './pages'
