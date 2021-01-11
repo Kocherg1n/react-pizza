@@ -8,6 +8,7 @@ const PizzaBlock = ({id, imageUrl, name, price, types, sizes, onClickAddPizza, c
   const availableSizes = [26, 30, 40];
   const [activeType, setActiveType] = useState(types[0]);
   const [activeSize, setActiveSize] = useState(sizes[0]);
+  const currentPizzaPrice = price[activeSize];
 
   const onSelectType = idx => setActiveType(idx);
   const onSelectSize = size => setActiveSize(size);
@@ -22,7 +23,6 @@ const PizzaBlock = ({id, imageUrl, name, price, types, sizes, onClickAddPizza, c
     };
     onClickAddPizza(pizzaObj);
   };
-
 
   return (
     <div className="pizza-block">
@@ -61,7 +61,7 @@ const PizzaBlock = ({id, imageUrl, name, price, types, sizes, onClickAddPizza, c
         </ul>
       </div>
       <div className="pizza-block__bottom">
-        <div className="pizza-block__price">от {price} ₽</div>
+        <div className="pizza-block__price"> {currentPizzaPrice} ₽</div>
         <Button onClick={onAddPizza} className="button--add" outline>
           <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -82,10 +82,18 @@ const PizzaBlock = ({id, imageUrl, name, price, types, sizes, onClickAddPizza, c
 export default PizzaBlock;
 
 PizzaBlock.propTypes = {
+  id: PropTypes.number.isRequired,
   imageUrl: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
+  price: PropTypes.object.isRequired,
   types: PropTypes.arrayOf(PropTypes.number).isRequired,
   sizes: PropTypes.arrayOf(PropTypes.number).isRequired,
-  onAddPizza: PropTypes.func
+  onClickAddPizza: PropTypes.func.isRequired,
+  cartItems: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.null])
+};
+
+PizzaBlock.defaultProps = {
+  cartItems: null
 };

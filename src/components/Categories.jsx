@@ -1,24 +1,27 @@
 import React from 'react'
 import {useDispatch} from 'react-redux'
-import {setCategoryById} from '../redux/actions/filters'
 import PropTypes from 'proptypes'
 
-const Categories = React.memo( ({items, categoryActive}) => {
+import {setCategoryById} from '../redux/actions/filters'
+
+const Categories = React.memo(({items, categoryActive}) => {
   const dispatch = useDispatch();
   const onSelectItemHandler = idx => dispatch(setCategoryById(idx));
 
   return (
     <div className='categories'>
       <ul>
-        {items.map((item, idx) => {
-          return (
-            <li
-              className={categoryActive === idx ? 'active' : ''}
-              onClick={() => onSelectItemHandler(idx)}
-              key={item + idx}
-            >{item}</li>
-          )
-        })}
+        {
+          items.map((item, idx) => {
+            return (
+              <li
+                className={categoryActive === idx ? 'active' : ''}
+                onClick={() => onSelectItemHandler(idx)}
+                key={item + idx}
+              >{item}</li>
+            )
+          })
+        }
       </ul>
     </div>
   )

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {setIsLoading, setPizzas} from './actions/pizzas'
 
-export const fetchPizzas = (category, sortBy) => async (dispatch) => {
+export const fetchPizzas = (category, sortBy) => async (dispatch, getState) => {
   dispatch(setIsLoading(true));
   const order = (sortBy === 'name' ? '&_order=asc' : '&_order=desc');
   try {

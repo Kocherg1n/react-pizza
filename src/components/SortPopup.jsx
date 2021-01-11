@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react'
-import sortArrowSvg from '../assets/img/arrow-top.svg'
 import {useDispatch} from 'react-redux'
-import {setSortBy} from '../redux/actions/filters'
 import PropTypes from 'proptypes'
+
+import sortArrowSvg from '../assets/img/arrow-top.svg'
+import {setSortBy} from '../redux/actions/filters'
 
 const SortPopup = React.memo(({items, activeSortType}) => {
   const [popupIsVisible, setPopupIsVisible] = useState(false);

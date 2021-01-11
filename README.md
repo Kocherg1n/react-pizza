@@ -6,11 +6,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
-#### `yarn start`
+#### `yarn start` - run project in dev mode
 
-#### `yarn test`
+#### `yarn server` - run json-server
 
-#### `yarn build`
 
 ## Used:
 

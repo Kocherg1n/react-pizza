@@ -1,16 +1,15 @@
 import React, {useEffect} from 'react'
-import {Categories, SortPopup, PizzaBlock} from '../components'
 import {useDispatch, useSelector} from 'react-redux'
-import Loader from '../components/Loader'
+
+import {Categories, SortPopup, PizzaBlock, Loader} from '../components'
 import {fetchPizzas} from '../redux/middleware'
-import {addPizzaToCart} from '../redux/actions/cart';
+import {addPizzaToCart} from '../redux/actions/cart'
 
 
 const plugs = Array(10).fill(0);
 const categoryNames = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 const sortNames = [
   {name: 'популярности', type: 'rating', order: 'desc'},
-  {name: 'цене', type: 'price', order: 'desc'},
   {name: 'алфавиту', type: 'name', order: 'asc'}
 ];
 
@@ -46,15 +45,19 @@ const Home = () => {
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
-        {isLoading
-          ? plugs.map((el, idx) => <Loader key={el + idx}/>)
-          : items.map(pizza => <PizzaBlock
-              onClickAddPizza={onClickAddPizzaHandler}
-              key={pizza.id}
-              isLoading
-              {...pizza}
-              cartItems={cartItems[pizza.id] && cartItems[pizza.id].length}
-            />)}
+        {
+          isLoading
+            ? plugs.map((el, idx) => <Loader key={el + idx}/>)
+            : items.map(pizza => (
+              <PizzaBlock
+                onClickAddPizza={onClickAddPizzaHandler}
+                key={pizza.id}
+                isLoading
+                {...pizza}
+                cartItems={cartItems[pizza.id] && cartItems[pizza.id].items.length}
+              />
+            ))
+        }
       </div>
     </div>
   );
